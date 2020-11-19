@@ -71,7 +71,7 @@ exports.register = (req, res) => {
 
 exports.login = (req, res, next) => {
     passport.authenticate('local', {
-        successRedirect: '/user/profile',
+        successRedirect: '/user/dashboard',
         failureRedirect: '/user/login',
         failureFlash: true
     })(req, res, next);

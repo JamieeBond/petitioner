@@ -18,9 +18,9 @@ router.get('/logout', (req, res) => {
     res.redirect('/user/login');
 });
 
-router.get('/profile', ensureAuthenticated, (req, res) =>
-    res.render('user/profile', {
-        name: req.user.name
+router.get('/dashboard', ensureAuthenticated, (req, res) =>
+    res.render('user/dashboard', {
+        user: req.user
     })
 );
 
