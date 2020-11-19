@@ -21,6 +21,7 @@ exports.register = (req, res) => {
         errors.push({ msg: 'Password must be at least 6 characters' });
     }
 
+    // if validation fails, render messages
     if (errors.length > 0) {
         res.render('user/register', {
             errors,
