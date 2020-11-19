@@ -3,13 +3,9 @@ const Petitions = require('../models/Petitions');
 const petitionController = {
     async add(req, res) {
         const {title, signaturesNeeded, description} = req.body;
-        let user = req.user;
+        const user = req.user;
 
         let errors = []
-
-        console.log(title);
-        console.log(signaturesNeeded);
-        console.log(description);
 
         // check required fields
         if (!title || !signaturesNeeded || !description) {

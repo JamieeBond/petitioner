@@ -18,10 +18,6 @@ router.get('/logout', (req, res) => {
     res.redirect('/user/login');
 });
 
-router.get('/dashboard', ensureAuthenticated, (req, res) =>
-    res.render('user/dashboard', {
-        user: req.user
-    })
-);
+router.get('/dashboard', ensureAuthenticated, userController.dashbboard);
 
 module.exports = router;
