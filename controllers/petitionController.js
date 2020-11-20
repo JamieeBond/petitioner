@@ -47,6 +47,22 @@ const petitionController = {
                 })
                 .catch(error => console.log(error));
         }
+    },
+    async search(req, res) {
+        const string = req.query.string;
+
+        // create search regex, ignore order of words and case insensitive
+        let words = string.split(' ');
+        let searchString = "";
+        words.forEach(word => searchString += "(?=.*"+word+")");
+        let regex = new RegExp(searchString, "i");
+
+        // search
+        await Petitions.find( { title: regex} )
+            .then(petitions => {
+                res.json(petitions);
+            })
+            .catch(error => console.log(error));
     }
 };
 

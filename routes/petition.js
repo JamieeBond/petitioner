@@ -7,4 +7,6 @@ const  { ensureAuthenticated } = require('../middleware/auth');
 router.get('/add', ensureAuthenticated, (req, res) => res.render('petition/add'));
 router.post('/add', ensureAuthenticated, petitionController.add);
 
+router.get('/search', petitionController.search);
+
 module.exports = router;
