@@ -15,7 +15,7 @@ window.onload = function() {
                     prePetitions = petitions;
                     resetSearchItems();
                     petitions.forEach(function (petition) {
-                        let newItem = $("#searchResults").append("<a id=\"" + petition._id + "\" href=\"#\" class=\"list-group-item list-group-item-action searchItem\">" + petition.title + "</a>").hide();
+                        let newItem = $("#searchResults").append("<a id=\"" + petition._id + "\" href=\"/petition/view/" + petition._id + "\" class=\"list-group-item list-group-item-action searchItem\">" + petition.title + "</a>").hide();
                         newItem.slideDown("normal");
                     });
                 }

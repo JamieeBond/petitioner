@@ -1,0 +1,17 @@
+<h1 class="mt-4">Petition</h1>
+<%- include ../partials/messages %>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header"><%= petition.title %></div>
+            <div class="card-body">
+                <div class="list-group">
+                    <%= petition.description %>
+                </div>
+            </div>
+            <div class="card-footer">
+                Created By: <%= createdBy.name %>
+            </div>
+        </div>
+    </div>
+</div>
