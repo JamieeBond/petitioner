@@ -6,7 +6,23 @@
             <div class="card-header"><%= petition.title %></div>
             <div class="card-body">
                 <div class="list-group">
-                    <%= petition.description %>
+                    <div class="row">
+                        <div class="col">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button id="signature" petition="<%= petition._id %>" type="button" class="btn btn-success">Sign</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <%= petition.description %>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="card-footer">
@@ -15,3 +31,6 @@
         </div>
     </div>
 </div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/petition.js"></script>
