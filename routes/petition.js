@@ -1,16 +1,16 @@
 const express = require('express')
 const router = express.Router();
-const petitionController = require('../controllers/petitionController');
-const  { ensureAuthenticated } = require('../middleware/auth');
+const PetitionController = require('../controllers/PetitionController');
+const Auth = require('../middleware/Auth');
 
 // add petition
-router.get('/add', ensureAuthenticated, (req, res) => res.render('petition/add'));
-router.post('/add', ensureAuthenticated, petitionController.add);
+router.get('/add', Auth.ensureAuthenticated, (req, res) => res.render('petition/add'));
+router.post('/add', Auth.ensureAuthenticated, PetitionController.add);
 
 // search
-router.get('/search', petitionController.search);
+router.get('/search', PetitionController.search);
 
 // view petition
-router.get('/view/:id', petitionController.view);
+router.get('/view/:id',Auth.optionalAuthenticated, PetitionController.view);
 
 module.exports = router;

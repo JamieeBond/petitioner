@@ -15,6 +15,16 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="/"><i class="fas fa-file-signature"></i> Petitioner</a>
         <input id="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <% if(typeof user == 'object' && user) { %>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="/user/dashboard"><i class="fas fa-user"></i></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/user/logout"><i class="fas fa-sign-out-alt"></i></a>
+            </li>
+        </ul>
+    <% } %>
 </nav>
 <div id="searchResults" class="list-group">
 </div>

@@ -3,7 +3,7 @@ const passport = require('passport');
 const Users = require('../models/Users');
 const Petitions = require('../models/Petitions');
 
-const userController = {
+const UserController = {
     async register(req, res) {
         const {name, email, password, passwordCon} = req.body;
         let errors = []
@@ -78,7 +78,7 @@ const userController = {
             failureFlash: true
         })(req, res, next);
     },
-    async dashbboard(req, res) {
+    async dashboard(req, res) {
         const user = req.user;
         const petitions = await Petitions.find({createdBy: user._id});
         res.render('user/dashboard', {
@@ -88,4 +88,4 @@ const userController = {
     }
 };
 
-module.exports = userController;
+module.exports = UserController;

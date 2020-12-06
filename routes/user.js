@@ -1,15 +1,15 @@
 const express = require('express')
 const router = express.Router();
-const userController = require('../controllers/userController');
-const  { ensureAuthenticated } = require('../middleware/auth');
+const UserController = require('../controllers/UserController');
+const Auth = require('../middleware/Auth');
 
 // login
 router.get('/login', (req, res) => res.render('user/login'));
-router.post('/login', userController.login);
+router.post('/login', UserController.login);
 
 // register
 router.get('/register', (req, res) => res.render('user/register'))
-router.post('/register', userController.register);
+router.post('/register', UserController.register);
 
 // logout
 router.get('/logout', (req, res) => {
@@ -18,6 +18,6 @@ router.get('/logout', (req, res) => {
     res.redirect('/user/login');
 });
 
-router.get('/dashboard', ensureAuthenticated, userController.dashbboard);
+router.get('/dashboard', Auth.ensureAuthenticated, UserController.dashboard);
 
 module.exports = router;

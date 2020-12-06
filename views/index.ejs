@@ -7,12 +7,14 @@
             <p>To begin creating or signing petitions, either register for an account or login!</p>
           </div>
       </div>
-  <div class="col-md-4 m-auto">
-      <div class="card card-body text-center">
-          <h1><i class="far fa-user fa-2x"></i></h1>
-          <p>Register or login to create and sign petitions</p>
-          <a href="/user/register" class="btn btn-primary btn-block mb-2">Register</a>
-          <a href="/user/login" class="btn btn-secondary btn-block">Login</a>
-      </div>
-    </div>
+    <% if(user == undefined) { %>
+        <div class="col-md-4 m-auto">
+            <div class="card card-body text-center">
+                <h1><i class="far fa-user fa-2x"></i></h1>
+                <p>Register or login to create and sign petitions</p>
+                <a href="/user/register" class="btn btn-primary btn-block mb-2">Register</a>
+                <a href="/user/login" class="btn btn-secondary btn-block">Login</a>
+            </div>
+        </div>
+    <% } %>
 </div>

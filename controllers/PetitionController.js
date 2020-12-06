@@ -2,7 +2,7 @@ const Petitions = require('../models/Petitions');
 const Users = require('../models/Users');
 const ObjectId = require('mongodb').ObjectId;
 
-const petitionController = {
+const PetitionController = {
     async add(req, res) {
         const {title, signaturesNeeded, description} = req.body;
         const user = req.user;
@@ -67,15 +67,15 @@ const petitionController = {
             .catch(error => console.log(error));
     },
     async view(req, res) {
-
         const petition = await Petitions.findOne({"_id" : ObjectId(req.params.id)});
         const createdBy = await Users.findOne({"_id" : ObjectId(petition.createdBy)});
         res.render('petition/view', {
             petition: petition,
-            createdBy: createdBy
+            createdBy: createdBy,
+            user: req.user
         })
     }
 };
 
-module.exports = petitionController;
+module.exports = PetitionController;
 

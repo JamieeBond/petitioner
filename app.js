@@ -13,7 +13,7 @@ var io = require("socket.io")();
 
 app = express();
 app.io = io;
-require('./middleware/passport')(passport);
+require('./middleware/Passport')(passport);
 
 /**
  * Connect to Mongo

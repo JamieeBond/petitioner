@@ -13,11 +13,14 @@
                             </div>
                         </div>
                     </div>
+                    <br/>
+                    <% if(user != undefined) { %>
                     <div class="row">
-                        <div class="col">
+                        <div class="col d-flex justify-content-center">
                             <button id="signature" petition="<%= petition._id %>" type="button" class="btn btn-success">Sign</button>
                         </div>
                     </div>
+                    <% } %>
                     <div class="row">
                         <div class="col">
                             <%= petition.description %>
