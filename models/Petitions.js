@@ -20,7 +20,10 @@ const PetitionSchema = new mongoose.Schema({
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Users'
-    }
+    },
+    signatures: [
+        { type: mongoose.Schema.Types.ObjectId, ref: 'Users' }
+    ]
 })
 
 const Petitions = mongoose.model('Petitions', PetitionSchema);

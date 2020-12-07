@@ -32,7 +32,8 @@ const PetitionController = {
                 title: title,
                 signaturesNeeded: signaturesNeeded,
                 description: description,
-                createdBy: user._id
+                createdBy: user._id,
+                signatures: [user._id]
             })
 
             // save petition
