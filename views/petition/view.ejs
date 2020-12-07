@@ -7,16 +7,17 @@
             <div class="card-body">
                 <p class="text-center"><%= petition.signaturesNeeded %> Signatures Needed</p>
                 <div class="progress">
-                    <% var percentage = (petition.signatures.length/petition.signaturesNeeded)*100 %>
-                    <div class="progress-bar" role="progressbar" style="width:<%= percentage %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="<%= petition.signaturesNeeded %>"><%= percentage %>%</div>
+                    <% let percentage = (petition.signatures.length/petition.signaturesNeeded)*100 %>
+                    <div class="progress-bar" role="progressbar" style="width:<%= percentage %>%;" aria-valuenow="<%= percentage %>" aria-valuemin="0" aria-valuemax="<%= petition.signaturesNeeded %>"><%= percentage %>%</div>
                 </div>
                 <br />
-                <p class="text-center"><%= petition.signatures.length %> <%- petition.signatures.length == 1 ? 'Signature Obtained' : 'Signatures Obtained' %></p>
+                <p id="signature-obtained" class="text-center"><%= petition.signatures.length %> <%- petition.signatures.length == 1 ? 'Signature Obtained' : 'Signatures Obtained' %></p>
                 <% if(user != undefined) { %>
+                    <% let hasSigned = petition.signatures.includes(user._id) %>
                     <hr>
                     <div class="list-group">
                         <div class="col d-flex justify-content-center">
-                            <button id="signature" petition="<%= petition._id %>" type="button" class="btn btn-success">Sign</button>
+                            <button id="signature" user="<%= user._id %>" petition="<%= petition._id %>" type="button" class="btn btn-<%- hasSigned ? 'danger' : 'success' %>"><%- hasSigned ? 'Remove Signature' : 'Add Signature' %></button>
                         </div>
                     </div>
                 <% } %>

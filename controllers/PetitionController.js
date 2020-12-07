@@ -61,7 +61,7 @@ const PetitionController = {
         let regex = new RegExp(searchString, "i");
 
         // search
-        await Petitions.find( { title: regex} )
+        await Petitions.find({ title: regex})
             .then(petitions => {
                 res.json(petitions);
             })
@@ -77,6 +77,41 @@ const PetitionController = {
         })
     }
 };
+
+/**
+ * Socket IO when the Add/Remove Signature button is clicked
+ */
+
+io.on( "connection", function(socket) {
+    socket.on("signature", function(data) {
+        updateSignatures(data['petition'], data['user']).then(function(petition){
+            io.sockets.emit("signature-refresh"+data['petition'],{
+                'signatures' : petition.signatures.length,
+                'signaturesNeeded' : petition.signaturesNeeded,
+                'signedUser' : data['user']
+            });
+        });
+    });
+});
+
+/**
+ * Add/Remove Signature
+ */
+
+async function updateSignatures(petitionsId, userId) {
+    try {
+        let petition = await Petitions.findOne({"_id": ObjectId(petitionsId)});
+        if (petition.signatures.includes(userId)) {
+            await petition.signatures.pull({"_id": userId});
+        } else {
+            await petition.signatures.push({"_id": userId});
+        }
+        await petition.save()
+        return petition;
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 module.exports = PetitionController;
 
