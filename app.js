@@ -11,8 +11,6 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const io = require("socket.io")();
 global.io = io;
-
-
 app = express();
 app.io = io;
 require('./middleware/Passport')(passport);
@@ -99,6 +97,5 @@ app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
-
 
 module.exports = app;
