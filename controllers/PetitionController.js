@@ -1,23 +1,14 @@
 const Petitions = require('../models/Petitions');
 const Users = require('../models/Users');
+const PetitionValidator = require('../validator/PetitionValidator');
 const ObjectId = require('mongodb').ObjectId;
 
 const PetitionController = {
     async add(req, res) {
         const {title, signaturesNeeded, description} = req.body;
         const user = req.user;
-
-        let errors = []
-
-        // check required fields
-        if (!title || !signaturesNeeded || !description) {
-            errors.push({msg: 'Please enter all fields'});
-        }
-
-        if (description && !isNaN(description)) {
-            errors.push({msg: 'Signatures needed must be a number'});
-        }
-
+        // validation
+        let errors = PetitionValidator.addPetition(title, signaturesNeeded, description);
         // if validation fails, render messages
         if (errors.length > 0) {
             res.render('petition/add', {

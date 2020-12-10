@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www"
+    "dev": "nodemon ./bin/www",
+    "test": "mocha"
   },
   "keywords": [],
   "author": "Jamie Bond",
@@ -32,6 +33,9 @@
     "socket.io": "^3.0.3"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-things": "^0.2.0",
+    "mocha": "^8.2.1",
     "nodemon": "^2.0.6"
   }
 }
