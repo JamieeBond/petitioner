@@ -1,16 +1,16 @@
 language: node_js
 node_js:
-  - 14.13.0
+- 14.13.0
 script:
-  - echo '********** Build Start *********'
-  - echo 'Installing Dependencies'
-  - npm install
-  - echo 'Running Tests'
-  - npm run test
+- echo '********** Build Start *********'
+- echo 'Installing Dependencies'
+- npm install
+- echo 'Running Tests'
+- npm run test
 deploy:
   provider: heroku
   api_key:
-    secure: jceIGXY6aRD1CV/cxy7P1HZUr1UZ3B3YMS14WI3946JwkfH0FSKt0Bi3h6GWYzzjRvrEEC4asnkYC2xVlc4pB8yGgUz/2v50P8SXwtIlyuFBj0pHq15UY9hxGGvkPrSQMHWFLby+nZdol4c5xPSYNpb2Tcdq+Aghe2Sl3j3xkY25FzCIVXlrK9yD9jdoL9wUhI1UGyj9+h7T7qnBzPhDjJpkrgGn8AsVXA+FZXTmgU6J4c+Uv9dyZ/fiqilmBVULlG9h/Xb1FVzW+qIT2bazqx7Rnv3xXAoLV2YqTqww+vqmGs1jl5iqRVIiIptW4LzVtyAlP2+e1wO3ELDVG8CtbcQ5dyb43LbaWHqKEfoC7qDz2iqQ7eLnRzuMT3dv+Q4xEU4pduWyyBoaCV2KuioSFZUaDaq9VKg7LgaeG+LKlGJvXdp5pELgdzclmIIS4LVxAEEm3RZp8xQk2CVWKptFinCL6QSE78pRDA3Sx2sS2PqTws8JmwPZwb3JSv6PzqhaWABWk8y2BsF3ApGtVa0QEZoZQxUhEMSpcaSLzQyjcIXl+vjf9D1dnH1kIrUMdvvyrVz/lCgeVOZRk+3oGNQwNF5SeyGKI9A6BQYeX/7Z/clHHkMpI4YJ6P4ajp1EjEf6vlxqCVgg6d4XB/R82CPRJlguy3jA0EjW90Ly1wjyBXA=
+    secure: ZEwsvM+6QAfryXnq6tHWCNExOfAQgDvTnL34t+9qfRIRCd7QW5OYihnqgC9yrtdXFaKxb8MHkBdZJdW0q5qXnx9n0GiEdjGSVsh+mbQVrcr40I6zHeihvC/K6pq05UF8dHz9vHqst26CdFLWlWJlBAnjYviEqVVvD2XEL4s5zMYgiuZ3/lGrTQxDtZ1LQE747+5ACWXa5fB0cioqrMAo0E2oJ+eHfN6HDcWvTq/Agr1VHb/zGIpUl+v49gjLHxo29MmXB2IPP487RIb8vkqPd9Q568Xw6ZtBuKsZMEZUYK88jn+tG72iFgycq7rAM/3OKJQ0qXUcvo92qEyMuQr6zesbOq4Oxgl/DKHvCW0zOMPHoSjWTMRnAAUM9q3bDzbXiYQow7rE6oCzGTZSxbYeDye1fyLFT5qty9EV9L/qtfHibEXE6NJBZA3tkOCjEUc7TCf1Z1V2I/pfV1CkzK8AcuOnvyfIkKV9R1sSLS70fRUOZTBWFMmGsI0/13iSFO3sTN/hSiNQal4n+WYc5Ss+0/BYpbcUckn6QFUWd7bbH7um0DghlKWUvM3sQ2nREqKUfdqyLnho5A7Pwei9Hm7K8vaPtSNEczhtrZVsApPXU63PpUoDyKIsktBknfVqMA/21inTnKcN1/zRmnxbHhQd5ebkFjD4+peIX/tCOFL2Gmk=
   app: petitioner
   on:
     repo: BritishCounterpart/petitioner
