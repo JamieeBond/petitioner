@@ -18,3 +18,15 @@
         </div>
     <% } %>
 </div>
+<div class="row mt-5">
+    <div class="col-md-12 m-auto">
+        <div class="card">
+            <div class="card-header text-center">Most Recent Petitions</div>
+            <ul class="list-group list-group-flush">
+                <% petitions.forEach(function(petition){ %>
+                    <a href="/petition/view/<%- petition._id %>" class="list-group-item list-group-item-action"><%- petition.title %></a>
+                <% }); %>
+            </ul>
+        </div>
+    </div>
+</div>
