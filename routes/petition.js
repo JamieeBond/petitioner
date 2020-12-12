@@ -4,7 +4,12 @@ const PetitionController = require('../controllers/PetitionController');
 const Auth = require('../middleware/Auth');
 
 // add petition
-router.get('/add', Auth.ensureAuthenticated, (req, res) => res.render('petition/add'));
+router.get('/add', Auth.ensureAuthenticated, (req, res) => res.render(
+    'petition/add',
+    {
+        user: req.user
+    }
+));
 router.post('/add', Auth.ensureAuthenticated, PetitionController.add);
 
 // search
