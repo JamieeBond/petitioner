@@ -1,4 +1,4 @@
-window.onload = function() {
+$(function() {
     let prePetitions = [];
     $("#search").on("input", function() {
         // input value
@@ -28,5 +28,5 @@ window.onload = function() {
             $(this).remove();
         });
     }
-};
+});
 

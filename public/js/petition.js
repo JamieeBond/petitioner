@@ -1,4 +1,4 @@
-window.onload = function() {
+$(function() {
     const socket = io();
     const button = $("#signature");
     const petition = button.attr('petition');
@@ -20,6 +20,7 @@ window.onload = function() {
 
     function updateProgressBar(signatures, signaturesNeeded) {
         let percentage = (signatures/signaturesNeeded)*100;
+        percentage.toFixed(2);
         let progressBar = $(".progress-bar");
         progressBar.html(percentage+'%');
         progressBar.css("width", percentage+'%');
@@ -45,4 +46,4 @@ window.onload = function() {
             }
         }
     }
-};
+});

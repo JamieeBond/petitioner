@@ -7,7 +7,10 @@
             <div class="card-body">
                 <p class="text-center"><%= petition.signaturesNeeded %> Signatures Needed</p>
                 <div class="progress">
-                    <% let percentage = (petition.signatures.length/petition.signaturesNeeded)*100 %>
+                    <%
+                        let percentage = (petition.signatures.length/petition.signaturesNeeded)*100
+                        percentage = percentage.toFixed(2);
+                    %>
                     <div class="progress-bar" role="progressbar" style="width:<%= percentage %>%;" aria-valuenow="<%= percentage %>" aria-valuemin="0" aria-valuemax="<%= petition.signaturesNeeded %>"><%= percentage %>%</div>
                 </div>
                 <br />
