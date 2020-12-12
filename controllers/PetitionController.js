@@ -18,28 +18,23 @@ const PetitionController = {
                 description
             })
         } else {
-            // validation passed
-            const newPetition = new Petitions({
-                title: title,
-                signaturesNeeded: signaturesNeeded,
-                description: description,
-                createdBy: user._id,
-                signatures: [user._id]
-            })
-
-            // save petition
-            await newPetition.save()
-                .then(petition => {
-                    // push petition to user collection
-                    user.petitions.push(petition)
-                     user.save()
-                        .then(user => {
-                            req.flash('success_msg', 'Petition Added');
-                            res.redirect('/user/dashboard');
-                        })
-                        .catch(error => console.log(error));
+            // validation passed save petition
+            try {
+                const newPetition = await new Petitions({
+                    title: title,
+                    signaturesNeeded: signaturesNeeded,
+                    description: description,
+                    createdBy: user._id,
+                    signatures: [user._id]
                 })
-                .catch(error => console.log(error));
+                await newPetition.save();
+                await user.petitions.push(newPetition);
+                await user.save();
+                req.flash('success_msg', 'Petition Added');
+                res.redirect('/user/dashboard');
+            } catch (error) {
+                    console.error(error);
+            }
         }
     },
     async search(req, res) {
@@ -52,11 +47,12 @@ const PetitionController = {
         let regex = new RegExp(searchString, "i");
 
         // search
-        await Petitions.find({ title: regex})
-            .then(petitions => {
-                res.json(petitions);
-            })
-            .catch(error => console.log(error));
+        try {
+            let petitions = await Petitions.find({ title: regex})
+            res.json(petitions);
+        } catch (error) {
+            console.error(error);
+        }
     },
     async view(req, res) {
         const petition = await Petitions.findOne({"_id" : ObjectId(req.params.id)});
