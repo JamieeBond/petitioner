@@ -13,4 +13,7 @@ router.get('/search', PetitionController.search);
 // view petition
 router.get('/view/:id',Auth.optionalAuthenticated, PetitionController.view);
 
+// delete petition
+router.get('/delete/:id',Auth.optionalAuthenticated, PetitionController.delete);
+
 module.exports = router;

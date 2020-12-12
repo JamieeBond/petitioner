@@ -18,7 +18,7 @@ const PetitionController = {
                 description
             })
         } else {
-            // validation passed save petition
+            // validation passed save petition and push to users collection
             try {
                 const newPetition = await new Petitions({
                     title: title,
@@ -62,6 +62,22 @@ const PetitionController = {
             createdBy: createdBy,
             user: req.user
         })
+    },
+    async delete(req, res) {
+        try {
+            // only delete if the user is the user that has created the petition, otherwise redirect with error message
+            let petition = await Petitions.findOne({"_id": ObjectId(req.params.id), "createdBy": req.user._id});
+            if (petition) {
+                await petition.remove();
+                req.flash('success_msg', 'Petition Deleted');
+                res.redirect("/user/dashboard");
+            } else {
+                req.flash('error_msg', 'You\'re Not The Owner');
+                res.redirect("/user/dashboard");
+            }
+        } catch(error) {
+            console.log(error);
+        }
     }
 };
 
@@ -87,7 +103,9 @@ io.on( "connection", function(socket) {
 
 async function updateSignatures(petitionsId, userId) {
     try {
+        // find petition
         let petition = await Petitions.findOne({"_id": ObjectId(petitionsId)});
+        // if already signed, then unsign else sign
         if (petition.signatures.includes(userId)) {
             await petition.signatures.pull({"_id": userId});
         } else {

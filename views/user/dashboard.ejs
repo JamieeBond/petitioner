@@ -21,15 +21,20 @@
     <div class="col-sm-6">
         <div class="card">
             <div class="card-header">My Petitions</div>
-            <div class="card-body">
-                <div class="list-group">
-                    <% petitions.forEach(function(petition){ %>
-                        <a href="/petition/view/<%- petition._id %>" class="list-group-item list-group-item-action"><%- petition.title %></a>
-                    <% }); %>
-                </div>
-            </div>
+            <ul class="list-group list-group-flush">
+                <% petitions.forEach(function(petition){ %>
+                    <li class="list-group-item">
+                        <%- petition.title %>
+                        <div class="btn-group float-right">
+                            <a href="/petition/view/<%- petition._id %>" class="btn btn-primary btn-sm" role="button" aria-pressed="true">View</a>
+                            <a href="/petition/delete/<%- petition._id %>" class="btn btn-danger btn-sm" role="button" aria-pressed="true">Delete</a>
+                        </div>
+                    </li>
+                <% }); %>
+            </ul>
             <div class="card-footer text-right">
-                <a type="button" class="btn btn-success btn-sm" href="/petition/add">Add Petition</a></div>
+                <a type="button" class="btn btn-success btn-sm" href="/petition/add">Add Petition</a>
+            </div>
         </div>
     </div>
 </div>
