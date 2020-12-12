@@ -11,7 +11,7 @@
                         let percentage = (petition.signatures.length/petition.signaturesNeeded)*100
                         percentage = percentage.toFixed(2);
                     %>
-                    <div class="progress-bar" role="progressbar" style="width:<%= percentage %>%;" aria-valuenow="<%= percentage %>" aria-valuemin="0" aria-valuemax="<%= petition.signaturesNeeded %>"><%= percentage %>%</div>
+                    <div class="progress-bar" role="progressbar" petition="<%= petition._id %>" style="width:<%= percentage %>%;" aria-valuenow="<%= percentage %>" aria-valuemin="0" aria-valuemax="<%= petition.signaturesNeeded %>"><%= percentage %>%</div>
                 </div>
                 <br />
                 <p id="signature-obtained" class="text-center"><%= petition.signatures.length %> <%- petition.signatures.length == 1 ? 'Signature Obtained' : 'Signatures Obtained' %></p>
