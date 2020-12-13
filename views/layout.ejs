@@ -10,6 +10,11 @@
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/search.js"></script>
     <title>Petitioner</title>
+
+    <% if(typeof petition == 'object' && petition) { %>
+    <meta name="title" content="Sign <%= petition.title %>">
+    <meta name="description" content="<%= petition.description %>">
+    <% } %>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
