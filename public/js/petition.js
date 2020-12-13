@@ -4,7 +4,7 @@ $(function() {
     const progressBar = $(".progress-bar");
     const petition = progressBar.attr('petition');
     const user = button.attr('user');
-console.log(petition);
+
     button.click(function () {
         socket.emit("signature", {
             'petition' : petition,
@@ -20,8 +20,7 @@ console.log(petition);
     });
 
     function updateProgressBar(signatures, signaturesNeeded) {
-        let percentage = (signatures/signaturesNeeded)*100;
-        percentage.toFixed(2);
+        let percentage = ((signatures/signaturesNeeded)*100).toFixed(2);
         progressBar.html(percentage+'%');
         progressBar.css("width", percentage+'%');
         progressBar.attr('aria-valuenow', percentage+'%');
