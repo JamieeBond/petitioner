@@ -14,7 +14,7 @@
                 <% let message = encodeURI("I would like you to sign the following petition https://petitioner.herokuapp.com/petition/view/"+petition._id) %>
                 <div class="btn-group float-right">
                     <a href="http://www.facebook.com/sharer.php?u=https://petitioner.herokuapp.com/petition/view/<%= petition._id %>" target="_blank" class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i class="fab fa-facebook-square"></i></a>
-                    <a href="https://twitter.com/intent/tweet?text=<%= message %>" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fab fa-twitter-square"></i></a>
+                    <a href="https://twitter.com/intent/tweet?text=<%= message %>" target="_blank" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fab fa-twitter-square"></i></a>
                     <a href="mailto:?Subject=Sign Petition <%= petition.title %>&amp;Body=<%= message %>" class="btn btn-light btn-sm" role="button" aria-pressed="true"><i class="fas fa-envelope-square"></i></a>
                 </div>
             </div>
