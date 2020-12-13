@@ -21,7 +21,7 @@ $(function() {
 
     function updateProgressBar(signatures, signaturesNeeded) {
         let percentage = ((signatures/signaturesNeeded)*100).toFixed(2);
-        progressBar.html(percentage+'%');
+        progressBar.find('.progress-bar-text').html(percentage+'%');
         progressBar.css("width", percentage+'%');
         progressBar.attr('aria-valuenow', percentage+'%');
     }

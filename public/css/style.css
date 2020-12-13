@@ -4,3 +4,7 @@ body {
 hr {
   border-top: 4px solid #444444;
 }
+.progress-bar .progress-bar-text {
+  position: absolute;
+  text-shadow: 0px 0px 4px #444;
+}

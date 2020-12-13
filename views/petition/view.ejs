@@ -1,9 +1,23 @@
+<article>
+    <header>
+        <h1>Sign <%= petition.title %></h1>
+        <p><%= petition.description %></p>
+    </header>
+</article>
 <h1 class="mt-4">Petition</h1>
 <%- include ../partials/messages %>
 <div class="row">
     <div class="col-sm-12">
         <div class="card">
-            <div class="card-header"><%= petition.title %></div>
+            <div class="card-header">
+                <%= petition.title %>
+                <% let message = encodeURI("I would like you to sign the following petition https://petitioner.herokuapp.com/petition/view/"+petition._id) %>
+                <div class="btn-group float-right">
+                    <a href="http://www.facebook.com/sharer.php?u=https://petitioner.herokuapp.com/petition/view/<%= petition._id %>" target="_blank" class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i class="fab fa-facebook-square"></i></a>
+                    <a href="https://twitter.com/intent/tweet?text=<%= message %>" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fab fa-twitter-square"></i></a>
+                    <a href="mailto:?Subject=Sign Petition <%= petition.title %>&amp;Body=<%= message %>" class="btn btn-light btn-sm" role="button" aria-pressed="true"><i class="fas fa-envelope-square"></i></a>
+                </div>
+            </div>
             <div class="card-body">
                 <p class="text-center"><%= petition.signaturesNeeded %> Signatures Needed</p>
                 <div class="progress">
@@ -11,7 +25,7 @@
                         let percentage = (petition.signatures.length/petition.signaturesNeeded)*100
                         percentage = percentage.toFixed(2);
                     %>
-                    <div class="progress-bar" role="progressbar" petition="<%= petition._id %>" style="width:<%= percentage %>%;" aria-valuenow="<%= percentage %>" aria-valuemin="0" aria-valuemax="<%= petition.signaturesNeeded %>"><%= percentage %>%</div>
+                    <div class="progress-bar" role="progressbar" petition="<%= petition._id %>" style="width:<%= percentage %>%;" aria-valuenow="<%= percentage %>" aria-valuemin="0" aria-valuemax="<%= petition.signaturesNeeded %>"><span class="progress-bar-text"><%= percentage %>%</span></div>
                 </div>
                 <br />
                 <p id="signature-obtained" class="text-center"><%= petition.signatures.length %> <%- petition.signatures.length == 1 ? 'Signature Obtained' : 'Signatures Obtained' %></p>
