@@ -1,6 +1,6 @@
 const chai = require('chai');
 const expect = chai.expect;
-const UserValidator =  require('../validator/UserValidator');
+const UserValidator =  require('../../validator/UserValidator');
 
 describe('UserValidator', function () {
 

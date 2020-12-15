@@ -5,8 +5,8 @@ script:
 - echo '********** Build Start *********'
 - echo 'Installing Dependencies'
 - npm install
-- echo 'Running Tests'
-- npm run test
+- echo 'Running Server Tests'
+- npm run server-test
 deploy:
   provider: heroku
   api_key:

@@ -1,0 +1,36 @@
+<style>
+    #unit-tests {
+        margin-top: 10px;
+    }
+    #mocha {
+        all: revert !important;
+    }
+    #mocha-report h1 {
+        font-size: 14px;
+    }
+    #mocha-report h2 {
+        font-size: 12px;
+    }
+    #mocha-stats .progress {
+        background: #D3D3D3 !important;
+        all: revert !important;
+    }
+</style>
+
+<div id="unit-tests" class="card">
+    <div class="card-header">Unit Tests</div>
+    <div class="card-body">
+        <div id="mocha"></div>
+    </div>
+</div>
+<script src="https://unpkg.com/chai/chai.js"></script>
+<script src="https://unpkg.com/mocha/mocha.js"></script>
+<script class="mocha-init">
+    mocha.setup('tdd');
+</script>
+<script src="/<%= test %>.test.js"></script>
+<script class="mocha-exec">
+    window.addEventListener('load', function () {
+        mocha.run();
+    })
+</script>

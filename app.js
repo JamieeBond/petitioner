@@ -10,6 +10,7 @@ const flash = require('connect-flash');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const io = require("socket.io")();
+global.clientTest = "../../test/client/client.test.ejs";
 global.io = io;
 app = express();
 app.io = io;
@@ -31,6 +32,10 @@ app.use(expressLayouts);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
+// js for client side testing
+if(process.env.npm_lifecycle_event === 'client-test') {
+    app.use(express.static(path.join(__dirname, 'test/client')));
+}
 
 /**
  * Logging
