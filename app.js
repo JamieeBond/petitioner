@@ -115,7 +115,7 @@ app.use(function(err, req, res, next) {
 app.functions = {
     disconnect() {
         mongoose.disconnect();
-        process.exit();
+        process.exit(0);
     }
 }
 
