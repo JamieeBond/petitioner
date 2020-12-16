@@ -50,8 +50,6 @@ after(function() {
 
 describe('Test PetitionController', () => {
     it('Test view, should return 200', function(){
-        console.log(petition);
-        console.log(user);
         chai.request(app)
             .get('/petition/view/'+petition._id)
             .end(function (err, res) {
