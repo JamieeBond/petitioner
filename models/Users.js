@@ -16,10 +16,7 @@ const UserSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
-    },
-    petitions: [
-        { type: mongoose.Schema.Types.ObjectId, ref: 'Petitions' }
-    ]
+    }
 })
 
 const Users = mongoose.model('Users', UserSchema);

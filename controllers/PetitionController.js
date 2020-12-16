@@ -4,7 +4,7 @@ const PetitionValidator = require('../validator/PetitionValidator');
 const ObjectId = require('mongodb').ObjectId;
 
 const PetitionController = {
-    async add(req, res) {
+    async add(req, res, done) {
         const {title, signaturesNeeded, description} = req.body;
         const user = req.user;
         // validation
@@ -28,24 +28,22 @@ const PetitionController = {
                     signatures: [user._id]
                 })
                 await newPetition.save();
-                await user.petitions.push(newPetition);
-                await user.save();
                 req.flash('success_msg', 'Petition Added');
                 res.redirect('/user/dashboard');
+                done();
             } catch (error) {
                     console.error(error);
             }
+            done();
         }
     },
     async search(req, res) {
         const string = req.query.string;
-
         // create search regex, ignore order of words and case insensitive
         let words = string.split(' ');
         let searchString = "";
         words.forEach(word => searchString += "(?=.*"+word+")");
         let regex = new RegExp(searchString, "i");
-
         // search
         try {
             let petitions = await Petitions.find({ title: regex})
@@ -54,14 +52,20 @@ const PetitionController = {
             console.error(error);
         }
     },
-    async view(req, res) {
-        const petition = await Petitions.findOne({"_id" : ObjectId(req.params.id)});
-        const createdBy = await Users.findOne({"_id" : ObjectId(petition.createdBy)});
-        res.render('petition/view', {
-            petition: petition,
-            createdBy: createdBy,
-            user: req.user
-        })
+    async view(req, res, done) {
+        try {
+            const petition = await Petitions.findOne({"_id" : ObjectId(req.params.id)});
+            const createdBy = await Users.findOne({"_id" : ObjectId(petition.createdBy)});
+            res.render('petition/view', {
+                petition: petition,
+                createdBy: createdBy,
+                user: req.user
+            })
+            done();
+        } catch (error) {
+            console.error(error);
+        }
+
     },
     async delete(req, res) {
         try {

@@ -10,6 +10,7 @@ const flash = require('connect-flash');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const io = require("socket.io")();
+let dbUrl = process.env.DB_URL;
 global.clientTest = "../../test/client/client.test.ejs";
 global.io = io;
 app = express();
@@ -17,10 +18,18 @@ app.io = io;
 require('./middleware/Passport')(passport);
 
 /**
+ * Test Database
+ */
+
+if(process.env.NODE_ENV == 'test') {
+    dbUrl = process.env.TEST_DB_URL;
+}
+
+/**
  * Connect to Mongo
  */
 
-mongoose.connect(process.env.DB_URL, {useNewUrlParser: true})
+mongoose.connect(dbUrl, {useNewUrlParser: true})
     .then(() => console.log('MongoDB Connected'))
     .catch(error => console.log(error));
 
@@ -102,5 +111,12 @@ app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
+
+app.functions = {
+    disconnect() {
+        mongoose.disconnect();
+        process.exit();
+    }
+}
 
 module.exports = app;

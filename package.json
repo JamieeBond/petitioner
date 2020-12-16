@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
-    "server-test": "NODE_ENV=test mocha \"./test/server/*.test.js\"",
+    "server-test": "NODE_ENV=test PORT=3030 mocha \"./test/server/*.test.js\"",
     "client-test": "nodemon ./bin/www"
   },
   "keywords": [],
@@ -35,11 +35,11 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "chai-things": "^0.2.0",
     "mocha": "^8.2.1",
     "nodemon": "^2.0.6",
     "sinon": "^9.2.2",
-    "supertest": "^6.0.1",
-    "chai-http": "^4.3.0"
+    "supertest": "^6.0.1"
   }
 }
