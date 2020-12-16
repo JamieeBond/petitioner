@@ -25,6 +25,13 @@ if(process.env.NODE_ENV == 'test') {
     dbUrl = process.env.TEST_DB_URL;
 }
 
+console.log('dbUrl');
+console.log(dbUrl);
+console.log('env_test');
+console.log(process.env.TEST_DB_URL);
+console.log('script');
+console.log(process.env.npm_lifecycle_event);
+
 /**
  * Connect to Mongo
  */
