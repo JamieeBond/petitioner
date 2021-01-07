@@ -57,16 +57,15 @@ describe('Test PetitionController', () => {
             });
     });
 
-    it('Add Petition should add to database',function(done){
-          chai.request(app)
+    it('Add Petition should add to database',function(){
+        chai.request(app)
             .post('/petition/add')
             .send({"title":"TEST", "signaturesNeeded":10, "description":"TEST"})
-              .end(async function(err, res) {
-                  expect(res).to.have.status(200);
-                  let petition = await Petitions.findOne({title: "TEST"});
-                  chai.assert.isNotNull(petition);
-                  done();
-              });
+            .end(async function(err, res) {
+                expect(res).to.have.status(200);
+                let petition = await Petitions.findOne({title: "TEST"});
+                chai.assert.isNotNull(petition);
+            });
     });
 
 });
