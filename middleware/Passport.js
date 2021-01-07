@@ -6,7 +6,7 @@ module.exports = function(passport) {
     passport.use(
         new LocalStrategy({ usernameField: 'email'}, (email, password, done) => {
             // match User
-            Users.findOne({email: email})
+            Users.findOne({email: { $regex: new RegExp(`^${email}$`, 'i') } })
                 .then(user => {
                     if(!user) {
                         return done(null, false, {message: 'Email Not Registered'});
