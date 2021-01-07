@@ -10,7 +10,7 @@ const PetitionSchema = new mongoose.Schema({
         required: true
     },
     signaturesNeeded: {
-        type: String,
+        type: Number,
         required: true
     },
     description: {
